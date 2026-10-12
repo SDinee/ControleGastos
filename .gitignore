@@ -1,0 +1,18 @@
+.anotacoes.txt
+
+# Banco local
+backend/ControleGastos.Api/Data/Banco/gastos.db
+backend/ControleGastos.Api/Data/Banco/gastos.db-shm
+backend/ControleGastos.Api/Data/Banco/gastos.db-wal
+
+# Build .NET
+bin/
+obj/
+
+# IDE
+.vs/
+.vscode/
+
+# Arquivos de usuário
+*.user
+*.suo
