@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.Services.AddControllers();
 builder.Services.AddDbContext<ControleGastosContext>(options =>
 {
     options.UseSqlite("Data Source=Data/Banco/gastos.db");
@@ -12,52 +13,13 @@ builder.Services.AddDbContext<ControleGastosContext>(options =>
 
 var app = builder.Build();
 
-app.MapGet("/api/gastos", (ControleGastosContext context) =>
+if (app.Environment.IsDevelopment())
 {
-    return context.Gastos.ToList();
-});
+    app.MapOpenApi();
+}
 
-app.MapPost("/api/gastos", (Gasto gasto, ControleGastosContext context) =>
-{
-    context.Gastos.Add(gasto);
-    context.SaveChanges();
+app.UseHttpsRedirection();
 
-    return Results.Created($"/api/gastos/{gasto.Id}", gasto);
-});
-
-app.MapDelete("/api/gastos/{Id}", (int Id, ControleGastosContext context) =>
-{
-    var gasto = context.Gastos.Find(Id);
-    if (gasto == null)
-    {
-        return Results.NotFound();
-    }
-
-    context.Gastos.Remove(gasto);
-    context.SaveChanges();
-
-    return Results.NoContent();
-});
-
-app.MapPut("/api/gastos/{Id}", (
-    int Id,
-    Gasto gastoAtualizado,
-    ControleGastosContext context) =>
-{
-    var gasto = context.Gastos.Find(Id);
-    if (gasto == null)
-    {
-        return Results.NotFound();
-    }
-
-    gasto.Descricao = gastoAtualizado.Descricao;
-    gasto.Valor = gastoAtualizado.Valor;
-    gasto.Categoria = gastoAtualizado.Categoria;
-    gasto.Data = gastoAtualizado.Data;
-
-    context.SaveChanges();
-
-    return Results.NoContent();
-});
+app.MapControllers();
 
 app.Run();
