@@ -23,18 +23,20 @@ namespace ControleGastos.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Vencimento")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

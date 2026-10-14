@@ -42,8 +42,8 @@ public class GastosController : ControllerBase
 
         gasto.Descricao = gastoAtualizado.Descricao;
         gasto.Valor = gastoAtualizado.Valor;
-        gasto.Categoria = gastoAtualizado.Categoria;
-        gasto.Data = gastoAtualizado.Data;
+        gasto.Nome = gastoAtualizado.Nome;
+        gasto.Vencimento = gastoAtualizado.Vencimento;
 
         _context.SaveChanges();
 
