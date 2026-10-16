@@ -18,12 +18,7 @@ function GastoForm({ onGastoAdicionado }) {
     };
 
     criarGasto(novoGasto)
-    .then((resposta) => {
-        if (!resposta.ok) {
-        throw new Error("Erro ao adicionar gasto");
-        }
-        alert("Gasto adicionado com sucesso!");
-
+    .then(() => {
         setNome("");
         setDescricao("");
         setValor("");
@@ -32,6 +27,13 @@ function GastoForm({ onGastoAdicionado }) {
         // Atualiza a lista de gastos após adicionar um novo gasto
         return onGastoAdicionado();
     })
+    .then(() => {
+        alert("Gasto adicionado com sucesso!");
+    })
+    .catch((erro) => {
+        console.error(erro);
+        alert("Não foi possível concluir o cadastro do gasto.");
+    });
     }
 
     return (

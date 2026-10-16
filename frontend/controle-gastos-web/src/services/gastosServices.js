@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5121/api/gastos";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function listarGastos() {
     return fetch(API_URL)

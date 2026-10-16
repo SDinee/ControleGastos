@@ -16,3 +16,7 @@ obj/
 # Arquivos de usuário
 *.user
 *.suo
+
+
+.env.production
+.env.development
