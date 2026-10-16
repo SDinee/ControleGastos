@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { criarGasto } from '../services/gastosServices';
 
 function GastoForm({ onGastoAdicionado }) {
     const [nome, setNome] = useState("");
@@ -16,13 +17,7 @@ function GastoForm({ onGastoAdicionado }) {
         vencimento: vencimento
     };
 
-    fetch("http://localhost:5121/api/gastos", {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body: JSON.stringify(novoGasto)
-    })
+    criarGasto(novoGasto)
     .then((resposta) => {
         if (!resposta.ok) {
         throw new Error("Erro ao adicionar gasto");

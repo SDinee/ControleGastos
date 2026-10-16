@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GastoForm from '../components/GastoForm';
 import GastoList from '../components/GastoList';
+import { listarGastos } from '../services/gastosServices';
 
 function Home() {
     const [gastos, setGastos] = useState([]);
@@ -10,10 +11,9 @@ function Home() {
     }, 0);
 
     function carregarGastos() {
-        return fetch("http://localhost:5121/api/gastos")
-        .then((resposta) => resposta.json())
+        return listarGastos()
         .then((dados) => {
-        setGastos(dados);
+            setGastos(dados);
         });
     }
 

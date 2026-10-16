@@ -1,19 +1,19 @@
 import { useState } from "react";
+import { removerGasto } from "../services/gastosServices";
+import { atualizarGasto } from "../services/gastosServices";
 
 function GastoList({ gastos, onGastoAlterado }) {
     const [gastoEditando, setGastoEditando] = useState(null);
     
     function excluirGasto(id) {
-        fetch(`http://localhost:5121/api/gastos/${id}`, {
-        method: "DELETE",
-        })
-        .then((resposta) => {
-        if (!resposta.ok) {
-            throw new Error("Erro ao excluir gasto");
-        }
-
+        removerGasto(id)
+        .then(() => {
         // Atualiza a lista de gastos após a exclusão
         return onGastoAlterado();
+        })
+        .catch((erro) => {
+            console.error(erro);
+            alert("Não foi possível excluir o gasto");
         });
     }
 
@@ -27,18 +27,8 @@ function GastoList({ gastos, onGastoAlterado }) {
         valor: parseFloat(gastoEditando.valor),
         };
 
-        fetch(`http://localhost:5121/api/gastos/${gastoEditando.id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(gastoAtualizado)
-        })
-        .then((resposta) => {
-        if (!resposta.ok) {
-            throw new Error("Erro ao atualizar gasto");
-        }
-        
+        atualizarGasto(gastoEditando.id, gastoAtualizado)
+        .then(() => {
         return onGastoAlterado();
         })
         .then(() => {
