@@ -1,0 +1,85 @@
+.gasto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    background-color: var(--cor-superficie);
+    padding: 24px;
+    border-radius: 12px;
+
+    margin-bottom: 32px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.campo input:focus {
+    border-color: var(--cor-primaria);
+    outline: 2px solid var(--cor-primaria);
+}
+
+.campos-linha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.campos-linha .campo {
+    min-width: 0;
+}
+
+.btn-adicionar {
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:  background-color 0.2 ease, transform 0.2 ease;
+}
+
+.btn-adicionar:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-adicionar:active {
+    transform: scale(0.98);
+}
+
+.form-cabecalho h2 {
+    font-size: 20px;
+    margin: 0 0 6px;
+    color: #0f172a;
+}
+
+.font-cabecalho p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .campos-linha {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

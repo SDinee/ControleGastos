@@ -1,0 +1,24 @@
+/*Define configurações e variáveis globais*/
+:root {
+    font-family: Inter, system-ui, -apple-system, 
+                 BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --cor-primaria: #2563eb;
+    --cor-fundo: #e8eef7;
+    --cor-superficie: #ffffff;
+    --cor-texto: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--cor-fundo);  
+    color: var(--cor-texto);
+}
+
+#root {
+    min-height: 100vh;
+}

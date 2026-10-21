@@ -1,5 +1,7 @@
+import "./GastoForm.css";
 import { useState } from 'react';
 import { criarGasto } from '../services/gastosServices';
+import "./GastoForm.css";
 
 function GastoForm({ onGastoAdicionado }) {
     const [nome, setNome] = useState("");
@@ -37,36 +39,57 @@ function GastoForm({ onGastoAdicionado }) {
     }
 
     return (
-        <form onSubmit={adicionarGasto}>
-            <input
-                type="text"
-                placeholder="Nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-            />
-
-            <input
-                type="text"
-                placeholder="Descrição"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-            />
+        <form className="gasto-form" onSubmit={adicionarGasto}>
+            <div className="form-cabecalho">
+                <h2>Novo gasto</h2>
+                <p>Preencha os dados para registrar sua despesa.</p>
+            </div>
             
-            <input
-                type="number"
-                placeholder="Valor"
-                value={valor}
-                onChange={(e) => setValor(e.target.value)}
-            />
+            <div className="campo">
+                <label htmlFor="nome">Nome</label>
 
-            <input
-                type="date"
-                placeholder="Data de vencimento"
-                value={vencimento}
-                onChange={(e) => setVencimento(e.target.value)}
-            />
+                <input
+                    id="nome"
+                    type="text"
+                    placeholder="Ex: Conta de luz"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                />
+            </div>
 
-            <button type="submit">
+            <div className="campo">
+                <label htmlFor="nome">Descrição</label>
+                <input
+                    type="text"
+                    placeholder="Ex: Pagar antes do fim do mês"
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
+                />
+            </div>
+            <div className="campos-linha">
+                <div className="campo">
+                    <label htmlFor="nome">Valor</label>
+                    <input
+                        type="number"
+                        placeholder="R$: 0,00"
+                        value={valor}
+                        onChange={(e) => setValor(e.target.value)}
+                    />
+                </div>
+
+                <div className="campo">
+                    <label htmlFor="nome">Vencimento</label>
+                    <input
+                    type="date"
+                    pmin="2000-01-01"
+                    max="2999-12-31"
+                    value={vencimento}
+                    onChange={(e) => setVencimento(e.target.value)}
+                />
+                </div>
+            </div>
+
+            <button className="btn-adicionar" type="submit">
                 Adicionar gastos
             </button>
         </form>
