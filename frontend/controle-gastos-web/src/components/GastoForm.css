@@ -78,7 +78,7 @@
     margin: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     .campos-linha {
         grid-template-columns: repeat(1, 1fr);
     }

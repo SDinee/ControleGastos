@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { removerGasto } from "../services/gastosServices";
 import { atualizarGasto } from "../services/gastosServices";
+import "./GastoList.css";
 
 function GastoList({ gastos, onGastoAlterado }) {
     const [gastoEditando, setGastoEditando] = useState(null);
@@ -48,7 +49,7 @@ function GastoList({ gastos, onGastoAlterado }) {
             {gastos.map((gasto) => (
             <div className="gasto" key={gasto.id}>
             {gastoEditando?.id === gasto.id ? (
-            <div>
+            <div className="gasto-edicao">
             <input
                 type="text"
                 value={gastoEditando.nome}
@@ -92,13 +93,18 @@ function GastoList({ gastos, onGastoAlterado }) {
                 })
                 }
             />
-
-            <button onClick={salvarEdicao}>
-                Salvar
-            </button>
-            <button onClick={() => setGastoEditando(null)}>
-                Cancelar
-            </button>
+            <div className="gasto-acoes">
+                <button 
+                    className="btn-salvar"  
+                    onClick={salvarEdicao}>
+                    Salvar
+                </button>
+                <button 
+                    className="btn-cancelar"
+                    onClick={() => setGastoEditando(null)}>
+                    Cancelar
+                </button>
+            </div>
             </div>
         ) : (
             <div>
@@ -106,14 +112,19 @@ function GastoList({ gastos, onGastoAlterado }) {
             <p>{gasto.descricao}</p>
             <p>{gasto.valor.toFixed(2)}</p>
             <p>Vencimento: {new Date(gasto.vencimento).toLocaleDateString("pt-BR")}</p>
-            
-            <button onClick={() => editarGasto(gasto)}>
-            Editar
-            </button>
+            <div className="gasto-acoes">
+                <button 
+                    className="btn-editar"
+                    onClick={() => editarGasto(gasto)}>
+                    Editar
+                </button>
 
-            <button onClick={() => excluirGasto(gasto.id)}>
-            Excluir
-            </button>
+                <button
+                    className="btn-excluir"
+                    onClick={() => excluirGasto(gasto.id)}>
+                    Excluir
+                </button>    
+            </div>
             </div>
         )}
 

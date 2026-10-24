@@ -27,29 +27,35 @@ function Home() {
 
     return (
         <main className="home">
-            <header className="home-cabecalho">
-                <h1>Controle de Gastos</h1>
-                <p>Gerencie suas despesas de forma simples.</p>
-            </header>
+            <section className="home-layout">
+                <div className="home-principal">
+                    <header className="home-cabecalho">
+                        <h1>Controle de Gastos</h1>
+                        <p>Gerencie suas despesas de forma simples.</p>
+                    </header>
 
-            <section className="home-resumo">
-                <div className="resumo-card">
-                    <h3>Quantidade de gastos</h3>
-                    <p>{quantidadeGastos}</p>
+                    <section className="home-resumo">
+                        <div className="resumo-card">
+                            <h3>Quantidade de gastos</h3>
+                            <p>{quantidadeGastos}</p>
+                        </div>
+
+                        <div className="resumo-card">
+                            <h3>Valor total</h3>
+                            <p>R$ {valorTotal.toFixed(2)}</p>
+                        </div>
+                    </section>
+
+                    <GastoForm onGastoAdicionado={carregarGastos} />
                 </div>
 
-                <div className="resumo-card">
-                    <h3>Valor total</h3>
-                    <p>R$ {valorTotal.toFixed(2)}</p>
-                </div>
+                <aside className="home-listagem" aria-labelledby="titulo-listagem">
+                    <GastoList
+                        gastos={gastos}
+                        onGastoAlterado={carregarGastos}
+                    />
+                </aside>
             </section>
-
-        <GastoForm onGastoAdicionado={carregarGastos} />
-        
-        <GastoList
-        gastos={gastos}
-        onGastoAlterado={carregarGastos}
-        />
         </main>
     )
 }

@@ -1,0 +1,133 @@
+.gasto {
+    background: var(--cor-superficie);
+    border: 1px solid #dbeafe;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    color: var(--cor-texto);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    width: 100%;
+    max-width: 600px;
+}
+
+.gasto p {
+    margin: 0 0 10px;
+    overflow-wrap: anywhere;
+}
+
+.gasto p:first-child {
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.gasto p:nth-child(3) {
+    color: var(--cor-primaria);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.gasto p:last-of-type {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.gasto-edicao {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+}
+
+.gasto-edicao input {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--cor-texto);
+    font: inherit;
+}
+
+.gasto-edicao input:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 1px;
+}
+
+.gasto-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.gasto-acoes button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.gasto-acoes button:hover {
+    filter: brightness(0.95);
+}
+
+.gasto-acoes button:active {
+    transform: scale(0.98);
+}
+
+.gasto-acoes button:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 3px;
+}
+
+.btn-editar,
+.btn-salvar {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+.btn-excluir {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-cancelar {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.gasto-edicao {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gasto-edicao > input:nth-of-type(1),
+.gasto-edicao > input:nth-of-type(2),
+.gasto-edicao > .gasto-acoes {
+    grid-column: 1 / -1;
+}
+
+.gasto-edicao input {
+    min-height: 44px;
+}
+
+@media (max-width: 1000px) {
+        .gasto-acoes button {
+        flex: 1;
+    }
+
+    .gasto-edicao {
+        grid-template-columns: 1fr;
+    }
+
+    .gasto-edicao > input,
+    .gasto-edicao > .gasto-acoes {
+        grid-column: 1;
+    }
+}

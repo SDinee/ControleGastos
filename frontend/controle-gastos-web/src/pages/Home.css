@@ -1,7 +1,8 @@
 .home {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 32px 20px;
+    padding: clamp(16px, 2.5vw, 36px);
 }
 
 .home-cabecalho {
@@ -55,8 +56,26 @@
     color: var(--cor-primaria);
 }
 
-@media (max-width: 600px) {
+.home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.home-principal,
+.home-listagem {
+    min-width: 0;
+}
+
+@media (max-width: 1000px) {
+    .home-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1000px) {
     .home-resumo {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
     }
 }

@@ -41,7 +41,7 @@ function GastoForm({ onGastoAdicionado }) {
     return (
         <form className="gasto-form" onSubmit={adicionarGasto}>
             <div className="form-cabecalho">
-                <h2>Novo gasto</h2>
+                <h2>Novo Gasto</h2>
                 <p>Preencha os dados para registrar sua despesa.</p>
             </div>
             
