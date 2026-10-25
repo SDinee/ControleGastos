@@ -17,6 +17,8 @@ obj/
 *.user
 *.suo
 
+.env
+.env.*
+!.env.example
 
-.env.production
-.env.development
+backend/ControleGastos.Api/Data/Banco/gastos.db-journal
