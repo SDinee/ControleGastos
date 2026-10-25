@@ -19,13 +19,21 @@ export function criarGasto(gasto) {
         },
         body: JSON.stringify(gasto)
     })
-    .then((resposta) => {
+    .then(async (resposta) => {
         if (!resposta.ok) {
-            throw new Error("Erro ao adicionar gasto");
+            const dadosErro = await resposta.json().catch(() => null);
+            const mensagens = Object.values(dadosErro?.errors ??
+                {}).flat();
+
+                throw new Error(
+                    mensagens.length > 0
+                    ? mensagens.join(" ")
+                    : dadosErro?.title ?? "Não foi possível cadastrar o gasto."
+                );
         }
 
         return resposta.json();
-    })
+    });
 }
 
 export function removerGasto(id) {

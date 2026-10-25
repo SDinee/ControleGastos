@@ -68,9 +68,16 @@
     min-width: 0;
 }
 
+.home-layout--sem-gastos {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 720px;
+    margin-inline: auto;
+}
+
 @media (max-width: 1000px) {
     .home-layout {
         grid-template-columns: 1fr;
+        
     }
 }
 

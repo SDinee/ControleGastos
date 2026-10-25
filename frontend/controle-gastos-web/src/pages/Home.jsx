@@ -27,7 +27,10 @@ function Home() {
 
     return (
         <main className="home">
-            <section className="home-layout">
+            <section
+                className={`home-layout ${
+                    gastos.length === 0 ? "home-layout--sem-gastos" : ""
+                }`}>
                 <div className="home-principal">
                     <header className="home-cabecalho">
                         <h1>Controle de Gastos</h1>
@@ -49,12 +52,14 @@ function Home() {
                     <GastoForm onGastoAdicionado={carregarGastos} />
                 </div>
 
-                <aside className="home-listagem" aria-labelledby="titulo-listagem">
-                    <GastoList
-                        gastos={gastos}
-                        onGastoAlterado={carregarGastos}
-                    />
-                </aside>
+                    {gastos.length > 0 && (
+                        <aside className="home-listagem">
+                            <GastoList
+                                gastos={gastos}
+                                onGastoAlterado={carregarGastos}
+                            />
+                        </aside>
+                    )}
             </section>
         </main>
     )

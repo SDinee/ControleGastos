@@ -35,6 +35,11 @@
     outline: 2px solid var(--cor-primaria);
 }
 
+.campo input:user-invalid:focus {
+    border-color: #dc2626;
+    outline: 2px solid #dc2626;
+}
+
 .campos-linha {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

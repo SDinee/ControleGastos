@@ -1,4 +1,3 @@
-import "./GastoForm.css";
 import { useState } from 'react';
 import { criarGasto } from '../services/gastosServices';
 import "./GastoForm.css";
@@ -34,9 +33,25 @@ function GastoForm({ onGastoAdicionado }) {
     })
     .catch((erro) => {
         console.error(erro);
-        alert("Não foi possível concluir o cadastro do gasto.");
+        alert(erro.message || "Não foi possível concluir o cadastro do gasto.");
     });
     }
+
+function validarCampoObrigatorio(e, nomeCampo) {
+    const campo = e.currentTarget;
+    let mensagem = "";
+
+    if (campo.validity.valueMissing) {
+        mensagem = `Informe ${nomeCampo}.`;
+    } else if (campo.validity.rangeUnderflow && campo.type === "date") {
+        mensagem = "O vencimento deve ser a partir de 01/01/2000.";
+    } else if (campo.validity.rangeOverflow && campo.type === "date") {
+        mensagem = "O vencimento deve ser até 31/12/2999.";
+    } else if (campo.validity.rangeUnderflow && campo.type === "number") {
+        mensagem = "O valor deve ser maior que zero.";
+    }
+    campo.setCustomValidity(mensagem);
+}
 
     return (
         <form className="gasto-form" onSubmit={adicionarGasto}>
@@ -52,40 +67,59 @@ function GastoForm({ onGastoAdicionado }) {
                     id="nome"
                     type="text"
                     placeholder="Ex: Conta de luz"
+                    required
+                    maxLength={50}
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
+                    onInvalid={(e) => validarCampoObrigatorio(e, "o nome do gasto")}
+                    onInput={(e) => e.currentTarget.setCustomValidity("")}
                 />
             </div>
 
             <div className="campo">
-                <label htmlFor="nome">Descrição</label>
+                <label htmlFor="descricao">Descrição</label>
                 <input
+                    id="descricao"
                     type="text"
                     placeholder="Ex: Pagar antes do fim do mês"
+                    required
+                    maxLength={100}
                     value={descricao}
                     onChange={(e) => setDescricao(e.target.value)}
+                    onInvalid={(e) => validarCampoObrigatorio(e, "a descrição do gasto")}
+                    onInput={(e) => e.currentTarget.setCustomValidity("")}
                 />
             </div>
             <div className="campos-linha">
                 <div className="campo">
-                    <label htmlFor="nome">Valor</label>
+                    <label htmlFor="valor">Valor</label>
                     <input
+                        id="valor"
                         type="number"
                         placeholder="R$: 0,00"
+                        required
+                        min="0.01"
+                        step="any"
                         value={valor}
                         onChange={(e) => setValor(e.target.value)}
+                        onInvalid={(e) => validarCampoObrigatorio(e, "o valor do gasto")}
+                        onInput={(e) => e.currentTarget.setCustomValidity("")}
                     />
                 </div>
 
                 <div className="campo">
-                    <label htmlFor="nome">Vencimento</label>
-                    <input
-                    type="date"
-                    pmin="2000-01-01"
-                    max="2999-12-31"
-                    value={vencimento}
-                    onChange={(e) => setVencimento(e.target.value)}
-                />
+                    <label htmlFor="vencimento">Vencimento</label>
+                    <input  
+                        id="vencimento"
+                        type="date"
+                        required
+                        min="2000-01-01"
+                        max="2999-12-31"
+                        value={vencimento}
+                        onChange={(e) => setVencimento(e.target.value)}
+                        onInvalid={(e) => validarCampoObrigatorio(e, "o vencimento do gasto")}
+                        onInput={(e) => e.currentTarget.setCustomValidity("")}
+                    />
                 </div>
             </div>
 
